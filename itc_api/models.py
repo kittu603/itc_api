@@ -57,6 +57,9 @@ class Subscription(models.Model):
         return f"{self.subscriber} subscribed to {self.book}"
 
 
+class New:
+    pass
+
 
 
 
