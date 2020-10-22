@@ -1,10 +1,17 @@
+from rest_framework import routers
 from django.urls import path, include
-from .views import BookListView, AuthorListView , MyUserListView , SubscriberListView, SubscriptionListView
+from .views import MyUserViewSet, AuthorViewSet, BookViewSet , SubscriberViewSet , SubscriptionViewSet
+
+
+router = routers.DefaultRouter()
+
+router.register(r'subscriptions', SubscriptionViewSet)
+router.register(r'books',BookViewSet)
+router.register(r'authors', AuthorViewSet)
+router.register(r'users', MyUserViewSet)
+router.register(r'subscribers', SubscriberViewSet)
+
 
 urlpatterns = [
-    path('books/',BookListView.as_view()),
-    path('authors/', AuthorListView.as_view()),
-    path('users/', MyUserListView.as_view()),
-    path('subscribers/', SubscriberListView.as_view()),
-    path('subscriptions/', SubscriptionListView.as_view()),
+    path('', include(router.urls)), # anything after url endpoint, taken care by router   
 ]

@@ -9,7 +9,7 @@ class MyUser(models.Model):
 
     def __str__(self):
         return self.user.username
-
+    
 
 class Author(models.Model):
     name = models.CharField(max_length=25)
@@ -41,13 +41,9 @@ class Subscriber(models.Model):
 
 
 
-
-
-
-
 class Subscription(models.Model):
     subscriber = models.ForeignKey('Subscriber', on_delete=models.CASCADE)
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='subscriptions')
     borrowed_date = models.DateTimeField(auto_now_add=True)
     amount_paid = models.PositiveIntegerField(default=0)
     days = models.PositiveIntegerField(default=0)
